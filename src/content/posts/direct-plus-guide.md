@@ -4,11 +4,7 @@ published: 2026-09-24
 updated: 2026-09-24
 description: GPT Free 账号注册与升级 PLUS/Pro 的完整操作教程。
 tags:
-  - GPT
-  - PLUS
-  - 账号注册
-  - 升级
-  - 使用教程
+  - 代充
 category: 使用教程
 draft: false
 lang: 简体中文
