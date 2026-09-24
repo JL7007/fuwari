@@ -1,7 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { AdminEnv } from "../../functions/_lib/env";
 import { requireAdmin, requireMutation } from "../../functions/_lib/guard";
-import { assertAllowedOrigin } from "../../functions/_lib/http";
+import {
+	assertAllowedOrigin,
+	errorResponse,
+	HttpError,
+} from "../../functions/_lib/http";
 import {
 	createSignedValue,
 	type SessionPayload,
@@ -46,6 +50,14 @@ async function adminRequest(
 }
 
 describe("admin request guards", () => {
+	it("clears stale sessions when a protected endpoint returns 401", () => {
+		const response = errorResponse(new HttpError(401, "Invalid session"));
+		expect(response.status).toBe(401);
+		expect(response.headers.get("Set-Cookie")).toContain(
+			"fuwari_admin=; Path=/; Max-Age=0",
+		);
+	});
+
 	it("accepts only the configured production origin for mutations", () => {
 		expect(() =>
 			assertAllowedOrigin(

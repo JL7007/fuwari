@@ -83,7 +83,11 @@ export function errorResponse(error: unknown): Response {
 	if (error instanceof HttpError) {
 		const body: ApiErrorBody = { error: error.message };
 		if (error.fields) body.fields = error.fields;
-		return json(body, { status: error.status });
+		const headers = new Headers();
+		if (error.status === 401) {
+			headers.append("Set-Cookie", clearCookie("fuwari_admin"));
+		}
+		return json(body, { status: error.status, headers });
 	}
 
 	if (error instanceof SyntaxError) {

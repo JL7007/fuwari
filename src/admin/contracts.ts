@@ -12,16 +12,16 @@ export interface PostFields {
 }
 
 export interface PostDocument extends PostFields {
-  slug: string;
-  sha: string | null;
-  sourcePath?: string;
+	slug: string;
+	sha: string | null;
+	sourcePath?: string;
 }
 
 export interface PostSummary {
-  slug: string;
-  sha: string;
-  sourcePath?: string;
-  title: string;
+	slug: string;
+	sha: string;
+	sourcePath?: string;
+	title: string;
 	published: string;
 	draft: boolean;
 }
