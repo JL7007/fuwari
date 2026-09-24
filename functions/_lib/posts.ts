@@ -12,6 +12,29 @@ export function postPath(slug: string): string {
 	return `src/content/posts/${validateSlug(slug)}.md`;
 }
 
+export function validatePostSourcePath(sourcePath: string): string {
+	const normalized = sourcePath.replace(/\\/g, "/");
+	const segments = normalized.split("/");
+	if (
+		normalized.startsWith("/") ||
+		normalized.includes("..") ||
+		segments.length === 0 ||
+		segments.some((segment) => !segment)
+	) {
+		throw new Error("Invalid post source path");
+	}
+	const filename = segments.pop() ?? "";
+	if (!filename.endsWith(".md")) throw new Error("Invalid post source path");
+	const stem = filename.slice(0, -3);
+	if (stem !== "index") validateSlug(stem);
+	for (const segment of segments) validateSlug(segment);
+	return normalized;
+}
+
+export function postPathFromSource(sourcePath: string): string {
+	return `src/content/posts/${validatePostSourcePath(sourcePath)}`;
+}
+
 function text(value: unknown, field: string, required = false): string {
 	const result = typeof value === "string" ? value.trim() : "";
 	if (required && !result) throw new Error(`${field} is required`);
@@ -46,6 +69,7 @@ export function parsePost(
 	slug: string,
 	sha: string,
 	source: string,
+	sourcePath?: string,
 ): PostDocument {
 	const match = source.match(
 		/^---\r?\n([\s\S]*?)\r?\n---\r?\n(?:\r?\n)?([\s\S]*)$/,
@@ -55,6 +79,7 @@ export function parsePost(
 	return {
 		slug: validateSlug(slug),
 		sha,
+		...(sourcePath ? { sourcePath: validatePostSourcePath(sourcePath) } : {}),
 		...validatePostFields({ ...data, body: match[2] }),
 	};
 }

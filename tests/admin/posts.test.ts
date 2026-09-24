@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
 	parsePost,
 	postPath,
+	postPathFromSource,
 	serializePost,
+	validatePostSourcePath,
 	validateSlug,
 } from "../../functions/_lib/posts";
 
@@ -11,6 +13,12 @@ describe("post documents", () => {
 		expect(postPath("hello-world")).toBe("src/content/posts/hello-world.md");
 		expect(() => validateSlug("../secret")).toThrow("Invalid slug");
 		expect(() => validateSlug("Hello World")).toThrow("Invalid slug");
+		expect(postPathFromSource("guide/index.md")).toBe(
+			"src/content/posts/guide/index.md",
+		);
+		expect(() => validatePostSourcePath("../secret.md")).toThrow(
+			"Invalid post source path",
+		);
 	});
 
 	it("round trips Fuwari frontmatter", () => {
