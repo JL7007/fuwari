@@ -4,7 +4,12 @@ published: 2026-09-24
 updated: 2026-09-24
 description: 质保 30 天成品 PLUS 的登录、账号安全、Codex 登录与常见故障排查教程。
 image: https://shenwansan-ai-plan.pages.dev/media/images/tutorials/tutorial-2fa-1.png
-tags: [GPT, PLUS, Codex, 账号安全, 使用教程]
+tags:
+  - GPT
+  - PLUS
+  - Codex
+  - 账号安全
+  - 使用教程
 category: 使用教程
 draft: false
 lang: 简体中文
@@ -22,7 +27,7 @@ lang: 简体中文
 > [!TIP]
 > 一定要增加/修改 GPT 密码，并且添加 2FA 保护。这样才可以保证 GPT 账号的独享性。如果使用 Codex/ChatGPT Work，还需要接国外手机号验证码。
 
-### 视频教程 01：成品 PLUS 登录方法
+成品 PLUS 登录方法
 
 <video controls preload="metadata" playsinline style="width: 100%; border-radius: 0.75rem;">
   <source src="https://shenwansan-ai-plan.pages.dev/media/videos/tutorials/product-plus-login.mp4" type="video/mp4" />
