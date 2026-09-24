@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fuwari",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-09-24",
+  "vars": {
+    "SITE_ORIGIN": "https://fuwari-ad9.pages.dev",
+    "GITHUB_OWNER": "JL7007",
+    "GITHUB_REPO": "fuwari"
+  },
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "fuwari-media"
+    }
+  ]
+}
