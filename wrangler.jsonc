@@ -1,10 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "fuwari",
+  "name": "shenwansan-ai-plan",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-09-24",
   "vars": {
-    "SITE_ORIGIN": "https://fuwari-ad9.pages.dev",
+    "SITE_ORIGIN": "https://shenwansan-ai-plan.pages.dev",
     "GITHUB_OWNER": "JL7007",
     "GITHUB_REPO": "fuwari"
   },

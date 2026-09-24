@@ -78,7 +78,7 @@ jobs:
       - name: Deploy
         uses: cloudflare/wrangler-action@25853364521e0d392ece9b0c1e97a4b37b638087 # v4
         with:
-          command: pages deploy dist --project-name fuwari --branch main --commit-hash ${{ github.sha }}
+          command: pages deploy dist --project-name shenwansan-ai-plan --branch main --commit-hash ${{ github.sha }}
           wranglerVersion: "4.137.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
