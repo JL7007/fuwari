@@ -13,7 +13,10 @@ The admin successfully deleted the Markdown posts from GitHub, but the public si
 ## Design
 
 - `ArchivePanel.svelte` will consume the existing `PostForList` type exported by `src/utils/content-utils.ts`, so nullable categories match the content schema.
-- `Navbar.astro` will hydrate the no-props theme switch with a directive accepted by Astro's type checker while keeping its browser behavior unchanged.
+- `LightDarkSwitch.svelte` will expose an optional initial mode so Astro can type its hydration directive, while preserving the existing automatic default.
+- `ArchivePanel.svelte` will keep URL-derived tag and category filters optional by giving them empty-array defaults.
+- `markdown.css` will inline the copy-button utility declarations that it previously tried to `@apply` from another stylesheet, avoiding Tailwind's cross-file custom-class failure.
+- The production build will use Astro's `--force` option so deleted content cannot remain in the content-layer cache.
 - No content, authentication, upload, R2, or admin API behavior will change.
 - Validation will run the project tests, admin TypeScript check, Astro check, and production build.
 - The resulting commit will be pushed to `main` and deployed manually to the Cloudflare Pages project `shenwansan-ai-plan` so the public site updates immediately. CI deployment credentials remain a separate repository-secret concern.
@@ -24,4 +27,3 @@ The admin successfully deleted the Markdown posts from GitHub, but the public si
 - The production build completes with an empty posts collection.
 - `https://shenwansan-ai-plan.pages.dev/` no longer contains the deleted demo post titles.
 - The admin route remains reachable.
-

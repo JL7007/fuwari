@@ -20,7 +20,10 @@
 
 **Files:**
 - Modify: `src/components/ArchivePanel.svelte`
+- Modify: `src/components/LightDarkSwitch.svelte`
 - Modify: `src/components/Navbar.astro`
+- Modify: `src/styles/markdown.css`
+- Modify: `package.json`
 
 **Interfaces:**
 - Consumes: `PostForList` from `src/utils/content-utils.ts`
@@ -38,13 +41,21 @@ Import `PostForList`, type `sortedPosts`, filtered lists, groups, and reducers w
 
 - [ ] **Step 3: Correct theme-switch hydration typing**
 
-Replace the failing no-props client-only declaration with Astro's load hydration directive, without changing the switch component or DOM behavior.
+Expose an optional `initialMode` prop with `AUTO_MODE` as its default, then use Astro's load hydration directive without changing the rendered switch behavior. Give archive `tags` and `categories` empty-array defaults because they are normally initialized from the URL rather than passed by Astro.
 
 - [ ] **Step 4: Verify Astro diagnostics**
 
 Run: `corepack pnpm astro check`
 
 Expected: zero errors; the existing unused `_cssVar` hint may remain.
+
+- [ ] **Step 5: Remove the cross-file Tailwind dependency**
+
+Inline the existing `btn-regular-dark` utility declarations in the Markdown copy-button rule so `markdown.css` can be compiled independently.
+
+- [ ] **Step 6: Force content refresh during production builds**
+
+Change the build script to `astro build --force && pagefind --site dist`, ensuring deleted posts are removed from Astro's content cache before route generation.
 
 ### Task 2: Verify and publish the production build
 
@@ -76,4 +87,3 @@ Expected: Wrangler returns a successful deployment URL.
 Fetch the public homepage and `/admin/`.
 
 Expected: the homepage has none of the deleted demo titles and the admin route returns HTTP 200.
-

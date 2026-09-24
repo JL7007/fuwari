@@ -9,7 +9,7 @@
     "test:run": "vitest run",
     "type-check:admin": "tsc -p tsconfig.admin.json --noEmit",
     "check": "astro check",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build --force && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
